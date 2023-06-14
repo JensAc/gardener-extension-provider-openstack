@@ -103,8 +103,12 @@ type ServerGroup struct {
 }
 
 type OpenStackNetworkPort struct {
-	NetworkId      string
-	NetworkName    string
-	VnicType       string
+	// The openstack network ID
+	NetworkID string
+	// The openstack network name
+	NetworkName string
+	// The openstack vnic type for the port to be created
+	VnicType string
+	// The openstack binding profile for the port to be created
 	BindingProfile map[string][]string
 }
