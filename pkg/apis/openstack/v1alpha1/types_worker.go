@@ -74,6 +74,11 @@ type WorkerConfig struct {
 	// OpenStack provider extension will try to create a new server group for instances of this worker pool.
 	ServerGroup *ServerGroup `json:"serverGroup,omitempty"`
 
+	// AddtionalNetworksPorts is a list of network ports the instances will be
+	// attached to. AddtionalNetworks is not mutually exclusive with the
+	// NetwrokID option and both can be specified
+	AdditionalNetworkPorts []OpenStackNetworkPort `json:"additionalNetworkPorts,omitempty"`
+
 	// MachineLabels define key value pairs to add to machines.
 	MachineLabels []MachineLabel `json:"machineLabels,omitempty"`
 }
@@ -93,4 +98,11 @@ type ServerGroup struct {
 	// Policy describes the kind of affinity policy for instances of the server group.
 	// https://docs.openstack.org/python-openstackclient/ussuri/cli/command-objects/server-group.html
 	Policy string `json:"policy"`
+}
+
+type OpenStackNetworkPort struct {
+	NetworkId      string              `json:"networkId,omitempty"`
+	NetworkName    string              `json:"networkName,omitempty"`
+	VnicType       string              `json:"vnicType,omitempty"`
+	BindingProfile map[string][]string `json:"bindingProfile,omitempty"`
 }

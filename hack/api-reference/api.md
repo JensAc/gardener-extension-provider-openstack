@@ -1408,6 +1408,64 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="openstack.provider.extensions.gardener.cloud/v1alpha1.OpenStackNetworkPort">OpenStackNetworkPort
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#openstack.provider.extensions.gardener.cloud/v1alpha1.WorkerConfig">WorkerConfig</a>)
+</p>
+<p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>networkId</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>networkName</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>vnicType</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>bindingProfile</code></br>
+<em>
+map[string][]string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="openstack.provider.extensions.gardener.cloud/v1alpha1.Purpose">Purpose
 (<code>string</code> alias)</p></h3>
 <p>
@@ -1965,6 +2023,21 @@ ServerGroup
 <td>
 <p>ServerGroup contains configuration data for the worker pool&rsquo;s server group. If this object is present,
 OpenStack provider extension will try to create a new server group for instances of this worker pool.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>additionalNetworkPorts</code></br>
+<em>
+<a href="#openstack.provider.extensions.gardener.cloud/v1alpha1.OpenStackNetworkPort">
+[]OpenStackNetworkPort
+</a>
+</em>
+</td>
+<td>
+<p>AddtionalNetworksPorts is a list of network ports the instances will be
+attached to. AddtionalNetworks is not mutually exclusive with the
+NetwrokID option and both can be specified</p>
 </td>
 </tr>
 <tr>

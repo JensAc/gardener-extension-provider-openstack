@@ -35,6 +35,7 @@ import (
 	"github.com/gardener/gardener-extension-provider-openstack/charts"
 	api "github.com/gardener/gardener-extension-provider-openstack/pkg/apis/openstack"
 	"github.com/gardener/gardener-extension-provider-openstack/pkg/apis/openstack/helper"
+	v1alpha1 "github.com/gardener/gardener-extension-provider-openstack/pkg/apis/openstack/v1alpha1"
 	"github.com/gardener/gardener-extension-provider-openstack/pkg/openstack"
 )
 
@@ -189,6 +190,14 @@ func (w *workerDelegate) generateMachineConfig(ctx context.Context) error {
 
 			if serverGroupDep != nil {
 				machineClassSpec["serverGroupID"] = serverGroupDep.ID
+			}
+
+			if len(workerConfig.AdditionalNetworkPorts) > 0 {
+				additionalNetworkPorts := []v1alpha1.OpenStackNetworkPort{}
+				for _, port := range workerConfig.AdditionalNetworkPorts {
+					additionalNetworkPorts = append(additionalNetworkPorts, v1alpha1.OpenStackNetworkPort(port))
+				}
+				machineClassSpec["additionalNetworkPorts"] = additionalNetworkPorts
 			}
 
 			if workerConfig.NodeTemplate != nil {
